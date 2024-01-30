@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+
+<head>
+    <title>QR Code Maker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="utf-8">
+    <meta name="theme-color" content="black" />
+    <meta name="google" content="notranslate" />
+    <link rel="manifest" href="qrcode_manifest.json">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/libraries/qrious.js"></script>
+    <script src="js/qrcode.js" type="module"></script>
+    <link rel="stylesheet" href="css/qrcode.css">
+    <link rel="apple-touch-icon" href="images/apple_touch_icon.png">
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("qrcode_service_worker.js", {
+                    scope: "/qrcode/"
+                }).then(registration => {
+                    // console.log("ServiceWorker registration successful with scope: ", registration.scope);
+                    // console.log(registration);
+                }, err => {
+                    console.log("ServiceWorker registration failed: ", err);
+                });
+                navigator.serviceWorker.addEventListener("controllerchange", () => {
+                    //
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>
+                        <span>
+                            <span class="english"><span style="color: navy;">QR </span> Code Builder</span>
+                            <span class="japanese"><span style="color: navy;">QR </span>コード・ビルダー</span>
+                        </span>
+                    </h2>
+                    <div>
+                        <p class="english">It's free. Knock yourself out.</p>
+                        <p class="japanese">無料だぴょん♪</p>
+                    </div>
+                    <span id="language-selector-holder">
+                        <span id="english-selector">English</span>
+                        <span id="japanese-selector">日本語</span>
+                    </span>
+                </div>
+                <div id="frame" class="col-xs-12">
+                    <div class="col-xs-12 col-md-6">
+                        <div id="input-holder">
+                            <input type="text" id="qrcode-input" spellcheck="false" placeholder=" " autocomplete="off"
+                                autocapitalize="none" autofocus />
+                            <label for="qrcode-input">
+                                <span class="english">Enter URL here</span>
+                                <span class="japanese">ここに URL を入力してください</span>
+                            </label>
+                        </div>
+                        <div id="controls-holder">
+                            <div id="size-radios-holder">
+                                <label>
+                                    <span class="english">QR Size:</span>
+                                    <span class="japanese">QR サイズ:</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="size-radio" value="96" />
+                                    <span class="english">Small</span>
+                                    <span class="japanese">小</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="size-radio" value="128" checked />
+                                    <span class="english">Medium</span>
+                                    <span class="japanese">中</span>
+                                </label>
+                                <label><input type="radio" name="size-radio" value="256" />
+                                    <span class="english">Large</span>
+                                    <span class="japanese">大</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div id="canvas-holder" class="empty">
+                            <canvas id="output-canvas"></canvas>
+                            <span id="download-button">
+                                <span class="english">Download</span>
+                                <span class="japanese">ダウンロードする</span>
+                            </span>
+                            <span id="code-will-appear-here-label">
+                                <span class="english">Code will appear here...</span>
+                                <span class="japanese">QRはここに表示されます</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="install-stuff-holder">
+
+    </div>
+</body>
+<footer>
+    <p>Copyright by James Wood! Yeah, Baby!</p>
+    <p>jamesarmstrongwood
+        @gmail.com</p>
+</footer>
+
+</html>
